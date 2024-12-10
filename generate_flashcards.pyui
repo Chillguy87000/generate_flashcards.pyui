@@ -1,0 +1,80 @@
+import genanki
+
+# Définir le modèle des cartes Anki
+model = genanki.Model(
+    1607392319,
+    'Basic Model',
+    fields=[
+        {'name': 'Question'},
+        {'name': 'Answer'}
+    ],
+    templates=[
+        {
+            'name': 'Card 1',
+            'qfmt': '{{Question}}',
+            'afmt': '{{FrontSide}}<hr id="answer">{{Answer}}',
+        },
+    ],
+)
+
+# Créer un paquet Anki
+deck = genanki.Deck(
+    2059400110,
+    'Flashcards Travail Ouvrier'
+)
+
+# Ajouter les flashcards au paquet
+flashcards = [
+    ("Qu'est-ce que la rationalisation du travail dans les années 1980 ?", 
+     "Une réflexion pour intensifier le travail des ouvriers en renforçant le pouvoir hiérarchique et en individualisant les salaires."),
+    ("Quelle méthode a été introduite dans les usines automobiles dans les années 1980 pour améliorer le rendement ?", 
+     "L'autocontrôle sur les chaînes de production."),
+    ("Quels effets la mécanisation a-t-elle sur le travail ouvrier ?", 
+     "Intensification du travail, danger accru, et création de nouveaux types d'accidents."),
+    ("Quel est le principal secteur où travaillent 83 % des ouvriers ?", 
+     "La logistique."),
+    ("Selon Vincent De Gaulejac, que critique-t-il dans l'organisation moderne du travail ?", 
+     "L'absurdité des contraintes gestionnaires et leur éloignement des objectifs réels du travail."),
+    ("Quelle est la différence entre le travail prescrit et le travail réel ?", 
+     "Le travail prescrit est conçu sans consulter les ouvriers, tandis que le travail réel reflète la réalité des tâches effectuées."),
+    ("Quelle innovation architecturale symbolise le contrôle hiérarchique permanent dans les usines ?", 
+     "Le Panoptique."),
+    ("Quels sont les points communs entre ouvriers et salariés selon le document ?", 
+     "Subordination, exposition au chômage, revenus faibles, et conditions de vie similaires."),
+    ("Comment la mécanisation a-t-elle changé les métiers dans le secteur pétrochimique ?", 
+     "Création de métiers de maintenance pour surveiller les machines et les processus."),
+    ("Quelle est la conséquence psychologique des évaluations quantitatives sur les ouvriers ?", 
+     "Pression psychologique et mal-être lié à l'obsession des résultats."),
+    ("Pourquoi les primes ont-elles été qualifiées de 'magiques' dans certains métiers ?", 
+     "Parce qu'elles favorisent l'individualisation des salaires, surtout dans un contexte de chômage élevé."),
+    ("Quelle conséquence a la commande vocale sur les travailleurs dans la logistique ?", 
+     "Perte d'autonomie et contrôle permanent grâce à la géolocalisation."),
+    ("Quelle tension existe entre les objectifs quantitatifs et les objectifs des salariés ?", 
+     "Opposition entre objectifs à court terme imposés par la gestion et objectifs à long terme des salariés, comme la maintenance."),
+    ("Quelle est l'impact des innovations organisationnelles sur la pénibilité du travail ?", 
+     "Elles augmentent la pénibilité en alourdissant les contraintes liées aux machines et au contrôle hiérarchique."),
+    ("Quel concept philosophique est lié au Panoptique de Jeremy Bentham dans le monde du travail ?", 
+     "L'idée de contrôle permanent et invisible pour induire un comportement discipliné."),
+    ("Pourquoi la polyvalence est-elle utilisée dans les fast-foods comme McDonald's ?", 
+     "Pour maximiser la productivité en faisant effectuer toutes les tâches à chaque employé sous un contrôle hiérarchique strict."),
+    ("Quels sont les effets des activités contrariées ou empêchées sur les salariés ?", 
+     "Un mal-être psychologique et une baisse de l'estime de soi."),
+    ("Qu'est-ce que l'ouvriarisation des tâches dans le secteur tertiaire ?", 
+     "L'introduction de formes de contrôle hiérarchique et de processus gestionnaires similaires à l'industrie."),
+    ("Quelles inégalités augmentent depuis 40 ans dans les classes populaires ?", 
+     "Les inégalités économiques et culturelles liées à la patrimonialisation de la société."),
+    ("Selon Schwartz, qu'est-ce qui caractérise les classes populaires ?", 
+     "Une expérience de domination économique et culturelle, des modes de vie communs, et une vision spécifique du monde."),
+]
+
+for question, answer in flashcards:
+    note = genanki.Note(
+        model=model,
+        fields=[question, answer]
+    )
+    deck.add_note(note)
+
+# Générer le fichier .apkg
+output_file = 'flashcards_travail_ouvrier.apkg'
+genanki.Package(deck).write_to_file(output_file)
+print(f"Fichier {output_file} généré avec succès.")
